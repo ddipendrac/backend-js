@@ -21,6 +21,7 @@ const uploadOnCloudinary = async (localFilePath) => {
   } catch (error) {
     if (fs.existsSync(localFilePath)) {
       fs.unlinkSync(localFilePath); // remove the loaclly saved temp file as the upload operation get failed
+      // fs is file system of nodejs
     }
     return null
   }
