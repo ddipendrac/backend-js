@@ -44,7 +44,7 @@ router.route("/current-user").post(verifyJWT, getCurrentUser)
 router.route("/update-account").patch(verifyJWT, updateAccoutDetails) // only update some
 
 router.route("/avatar").patch(verifyJWT, upload.single("avatar"), updateUserAvatar) // upload: multer
-router.route("/cover-image").path(verifyJWT, upload.single("coverImage"), updateUserCoverImage)
+router.route("/cover-image").patch(verifyJWT, upload.single("coverImage"), updateUserCoverImage)
 
 router.route("/c/:username").get(verifyJWT, 
   getUserChannelProfile

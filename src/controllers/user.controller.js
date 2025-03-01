@@ -155,7 +155,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   // Remove refresh token from the user record
   await User.findByIdAndUpdate(
     req.user._id,
-    { $set: { refreshToken: undefined } },
+    { $unset: { refreshToken: 1 } },
     { new: true } // ✅ Fixed syntax error here
   );
 
@@ -235,13 +235,15 @@ const changeCurrentPassword = asyncHandler(async(req, res)=> {
   .status(200)
   .json(new ApiResponse(200, {}, "Password changed successfully"))
 
-  const getCurrentUser = asyncHandler(async(req, res) => {
-     return res
-     .status(200)
-     .json(200,
-       req.user,
-        "Current user fetched successfully")
-  })
+  
+})
+
+const getCurrentUser = asyncHandler(async(req, res) => {
+  return res
+  .status(200)
+  .json(200,
+    req.user,
+     "Current user fetched successfully")
 })
 
 const updateAccoutDetails = asyncHandler(async(req, res) => {
