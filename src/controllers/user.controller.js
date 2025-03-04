@@ -10,6 +10,8 @@ import jwt from "jsonwebtoken"
  * @param {string} userId - The ID of the user.
  * @returns {object} - Access and refresh tokens.
  */
+// User: it can connect with db, because it is created using mongoose
+// req.files: default file access by multer
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
